@@ -1,0 +1,43 @@
+/*
+Spécification : 2.7.0
+Auteur : Asurix
+*/
+
+Espèces
+	nom & pseudo & forme du corp & matériau du corp & pierre précieuse est un texte
+	prix est un nombre
+	espèce bague contient nom, prix, pseudo, prix, forme du corp, 
+										  matériau du corp, pierre précieuse
+
+Principale :
+	bijoux est une bague
+	Début
+		affiche "Bienvenue à votre atelier de création de bague !"
+		bijoux.créer()
+		bijoux.aff()		
+
+créer de bague:
+	Début
+   	affiche "Comment vous appelez-vous ?"
+		demande pseudo@moi
+		affiche "Quel forme voulez-vous pour le corp de la bague ?"
+		demande forme du corp@moi
+    	affiche "Quel matériau voulez-vous pour le corp de la bague ?"
+		demande matériau du corp@moi
+    	affiche "Quel pierre précieuse voulez-vous au sommet de la bague ?"
+		demande pierre précieuse@moi
+    	affiche "Quel nom voulez-vous donner à votre bague ?"
+		demande nom@moi
+    	affiche "Combien voulez-vous qu'elle coûte ?"
+		demande prix@moi
+		retourne moi
+
+aff de bague:
+	Début
+		affiche "{nom@moi} | {prix@moi}€" + 
+					 | + "Description: "
+					 "   Magnifique bague fait en {matériau du corp@moi}, " + 
+					 "qui a permis de donner cette belle forme {forme du corp@moi}, " +
+				   "avec par dessus une sublime pierre appelée {pierre précieuse@moi}." +
+					 | + "   Créée par {pseudo@moi}"
+		retourne moi
