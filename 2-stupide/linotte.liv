@@ -1,0 +1,53 @@
+/*
+Spécification : Linotte 2.7.6
+*/
+
+Globale
+    caractères est un texte valant " abcdefg hijklmnop qrstuv wxyz"
+    nombre caractères est un nombre valant caractères.taille()
+
+Principale :
+    phrase utilisateur est un texte
+    phrase robot est un texte valant phrase stupide()
+    Début
+        Tant que vrai lis
+            affiche "Robot: " + phrase robot
+            questionne phrase utilisateur sur "Vous:"
+            /* On définie la phrase du robot en fonction de ce que
+               la phrase de l'utilisateur contient */
+            phrase robot vaut analyse phrase(phrase utilisateur)
+        ferme
+
+analyse phrase: phrase
+    Début
+        phrase vaut phrase.minuscule()
+
+        Si phrase contient "je ne suis pas stupide" lis
+            retourne "Si tu es stupide."
+        ferme
+        Sinon si phrase contient "je suis stupide" lis
+            retourne "Oui je confirme tu es stupide"
+        ferme
+        Sinon si phrase contient "tu es stupide" lis
+            retourne "Non je ne suis pas stupide, c'est vous qui l'êtes !"
+        ferme
+        Sinon si phrase contient "stupide" lis
+            retourne "Stupide ? Qu'est ce que c'est ? Cela se mange ?"
+        ferme
+        Sinon lis
+            retourne phrase stupide()
+        ferme
+        
+phrase stupide:
+    phrase est un texte
+    position est un nombre
+    taille phrase est un nombre valant 10
+    Début
+        // Augmentation aléatoire de la taille entre 0 et 10 de la phrase
+        taille phrase += hasard(10)
+        // Boucle qui tourne autant de fois que la taille de la phrase
+        Pour taille phrase lis
+            position vaut hasard(nombre caractères)
+            ajoute caractères{position} dans phrase
+        ferme
+        retourne phrase
