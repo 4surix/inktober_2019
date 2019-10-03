@@ -1,0 +1,76 @@
+/*
+Spécification : Linotte 2.7.6
+Thème Inktober : Appât
+*/
+
+Bibliothèque
+    dict référence dictionnaire.liv
+
+Espèces
+    clefs est un casier de nombre
+    valeurs est un casier de nombre
+    espèce dictionnaire contient clefs, valeurs
+
+Globale
+    fichier est un conduit
+    nombre lancés & nombre fois capturée & numéro_erreur est un nombre
+    erreurs capturées est un dictionnaire
+
+Principale :
+    Début
+        efface tableau
+        // On créer le dictionnaire
+        Parcours créer de dict avec erreurs capturées
+        // Boucle infinie
+        Tant que vrai lis
+            questionne nombre lancés sur |+"Combient de fois voulez-vous lancer l'appât ?"+|
+            affiche |+"Lancement d'appât: "
+            Pour chaque nombre lancés, parcours lance appât
+            affiche |+"Sac: "
+            Pour chaque erreurs capturées.items() lis
+                // joker est la valeur qui est renvoyée à chaque
+                // tour de boucle, ici par erreurs capturées.items()
+                affiche "    {valeur@joker} erreur n°{clef@joker}"
+            ferme
+        ferme
+        
+lance appât:
+    clefs est un casiers de nombre
+    Début
+        Essaie créer erreur()
+        Sinon lis
+            clefs vaut clefs de erreurs capturées
+            Si clefs contient numéro_erreur lis
+                // On ajoute + 1 au nombre de fois capturée
+                nombre fois capturée vaut erreurs capturées.valeur(numéro_erreur)
+                erreurs capturées.clef(numéro_erreur, nombre fois capturée + 1)
+                affiche "    Erreur {numéro_erreur} capturée !"
+            ferme
+            Sinon  lis
+                // On ajoute le numéro de l'erreur avec pour valeur 1
+                erreurs capturées.clef(numéro_erreur, 1)
+                affiche "    Nouvelle erreur {numéro_erreur} !" +
+                        | + "        Message : {message_erreur}"
+            ferme
+        ferme
+        reviens 
+
+créer erreur:
+    // num devient aléatoirement un nombre entre 0 et 100
+    num est un nombre valant hasard(100)
+    Début
+        // On génére volontairement une erreur
+        // Plus la suite de nombre est petite, plus l'erreur est rare !
+        Si num == 0, 5/0 !
+        Sinon si suite nombre(1, 5) contient num, "a".fsdfgh()
+        Sinon si suite nombre(6, 15) contient num, affiche pomme
+        Sinon si suite nombre(16, 30) contient num, fichier.ouvrir("azdfegfdgnh.txt")
+        Sinon si suite nombre(31, 100) contient num, "a" -= "b"
+        retourne moi
+
+suite nombre: début, fin
+    nbr est un nombre
+    suite est un casier de nombre
+    Début
+        Pour nbr de début à fin ajoute clone(nbr) dans suite
+        retourne suite
