@@ -1,0 +1,31 @@
+/*
+Spécification : Linotte 2.7.6
+Thème Inktober : Geler
+*/
+
+// Vidéo utilisée pour les images : https://www.youtube.com/watch?v=d0hr3URHzbk 
+// (Très belle vidéo regardez là)
+
+Globale
+    température est un nombre valant 0
+    fond est une toile, couleur vaut "noir",pointeur prend "flèche"
+    bulle est une image, image vaut "imgs_bulle/bulle_{température}.png"
+
+Principale:
+    Début
+        hauteur de fond vaut bulle.hauteur()
+        largeur de fond vaut bulle.largeur()
+        Projette fond & bulle
+        attends 10 secondes
+        Parcours refroidissement
+
+refroidissement:
+    Début
+        Tant que température > -15 lis
+            image de bulle vaut "imgs_bulle/bulle_{température}.png" 
+		// On baisse la température
+            température -= 1
+		// On attends 1 seconde et on remonte
+            attends 1 seconde
+        ferme
+        Reviens
