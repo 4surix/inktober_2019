@@ -1,0 +1,58 @@
+/*
+Spécification : Linotte 2.7.6
+Thème Inktober : Construire
+*/
+
+Globale
+    fond est une toile, couleur vaut "blanc", largeur vaut 650, hauteur vaut 330
+    brique est une image
+    briques est un casier de casiers
+    status & image & choix est un texte
+    x & y & colonne & ligne est un nombre
+
+Principale:
+    Début
+        Projette fond
+        // On crée un espace de 10x10 briques
+        Pour x de 0 à 9 lis
+            briques_y est un casier de image
+            ajoute briques_y dans briques
+            Pour y de 0 à 9 lis
+                projette brique
+                x de brique vaut x * 65
+                y de brique vaut y * 33
+                ajoute clone(brique) dans briques_y
+            ferme
+        ferme
+        Parcours Construire
+
+Construire:
+    Début
+        // Boucle infinie
+        Tant que vrai lis
+            temporise // On attend qu'une touche soit pressée
+             choix vaut touche // On enregistre la touche dans choix
+
+            //Verif si la touche pressée est bien un chiffre
+            Si {"0","1","2","3","4","5","6","7","8","9"} contient choix lis
+                // On passe de texte à nombre
+                convertis choix en colonne 
+                parcours Ajouter brique avec colonne
+            ferme
+        ferme
+        Reviens
+
+Ajouter brique: colonne
+    Début
+        Si colonne < 10 lis
+            // On prend la première place qui est vide en partant du bas
+            Pour ligne de 9 à 0 lis
+                Si image de (briques{colonne}{ligne}) est vide lis
+                       image de (briques{colonne}{ligne}) vaut "brique.png"
+                     // Maintenant que la 1ère place vide à été remplise,
+                    // on interromps la boucle
+                    interromps
+                ferme
+            ferme
+        ferme
+        Reviens
