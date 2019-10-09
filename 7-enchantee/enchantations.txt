@@ -1,0 +1,5 @@
+﻿anglais: Nice to see you !;
+français: Enchantée de vous voir !;
+espagnol: ¡Encantada de verla!;
+japonais: よろしくお願いします！;
+russe: Рад тебя видеть!

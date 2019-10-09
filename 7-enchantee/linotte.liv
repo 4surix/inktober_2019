@@ -1,0 +1,48 @@
+// Linotte 2.7.6
+// Thème Inktober : Enchantée
+Bibliothèque
+    dict référence dictionnaire.liv
+
+Espèces
+    clefs est un casier de texte
+    valeurs est un casier de texte
+    espèce dictionnaire contient clefs, valeurs
+
+Globale
+    fichier est un conduit
+    utile est une boite utilitaire
+    enchantations est un dictionnaire
+
+Principale :
+    choix langue & contenue fichier & texte est un texte
+    Début
+        Parcours créer de dict avec enchantations
+        // On récuper les enchantations dans le fichier
+        fichier.ouvrir("enchantations.txt")
+        contenue fichier vaut fichier.lire()
+        fichier.fermer()
+        // On efface les retours à la ligne/chariot
+        texte vaut utile.remplacer(contenue fichier, {"\n", "\r"}, "")
+        Parcours analyse texte avec texte
+
+        Tant que vrai lis
+            Demande choix langue
+            Si clefs de enchantations contient choix langue lis
+                affiche enchantations.valeur(choix langue)
+            ferme
+            Sinon affiche "Cette langue n'existe pas !" +
+                        | + "Liste des langues:" +
+                        | + "    " + enchantations.clefs()
+        ferme
+
+Analyse texte: texte
+    valeurs est un casier de texte
+    Début
+        // On sépare et prend les enchantations une par une
+        Pour chaque utile.séparer(texte, ";") lis
+            // On sépare la langue et la phrase
+            valeurs vaut utile.séparer(joker, ": ")
+            // On enregistre dans le dictionnaire
+            enchantations.clef(valeurs{0}, valeurs{1})
+        ferme
+        Reviens

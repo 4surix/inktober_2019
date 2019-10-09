@@ -1,0 +1,68 @@
+/*
+Spécification : Linotte 2.7.6
+Thème Inktober : Husky
+*/
+
+Espèces
+    forme & couleur est un texte
+    espèce yeux contient forme, couleur
+    
+    taille & poids est un nombre
+    tête & caractère & image est un texte
+    yeux est un yeux
+    espèce animal contient taille, poids, tête, caractère, yeux, image
+
+    pattes est un nombre valant 4
+    queue & oreilles & poil est un texte
+    espèce chien hérite de animal et contient pattes, queue, oreilles, poil
+
+    x_ & y_ est un nombre valant 25
+    espèce fond hérite de formulaire et contient x_ , y_
+
+Principale:
+    husky est un chien
+    Début
+        // On définie les informations de l'espèce
+        taille de husky vaut 50 ;  poids de husky vaut 25 ;  tête de husky vaut "ronde"
+        poil de husky vaut "Doux, lisse et de longueur moyenne"
+        oreilles de husky vaut "Triangulaires, dressées, pointe vers le ciel"
+        queue de husky vaut "Moyenne, touffue, légèrement relevée en forme de faucille"
+        caractère de husky vaut  "Doux, gentil, sociable, sportif et têtu"
+        forme de (yeux de husky) vaut "amande"
+        couleur de (yeux de husky) vaut "noir/marron/bleu/vairon"
+        image de husky vaut "husky.jpg"
+
+        Parcours presentation avec husky
+
+Presentation: animal
+    fond est un fond, titre prend "Présentation animal", largeur prend 800, hauteur prend 350
+    image est une ximage, source prend image de animal, hauteur vaut 300, largeur vaut 300, 
+        x prend 475, y prend 25
+    Début
+        Ajoute image dans fond
+        fond.Ajoute étiquette("Taille : "+taille de animal+" cm")
+        fond.Ajoute étiquette("Poids : "+poids de animal+" kg")
+        fond.Ajoute étiquette("Oreilles : "+oreilles de animal)
+        fond.Ajoute étiquette("Queue : "+queue de animal)
+        fond.Ajoute étiquette("Poil : "+poil de animal)
+        fond.Ajoute étiquette("Yeux : "+forme de (yeux de animal)+
+                              " | "+couleur de (yeux de animal))
+        fond.Ajoute étiquette("Caractère : "+caractère de animal)
+        // Boucle infinie pour garder fenêtre ouverte
+        Tant que vrai lis
+            temporise
+            vide touches
+        ferme
+        Reviens
+
+Ajoute étiquette de fond: texte
+    indication est une étiquette, texte vaut texte
+    Début
+        y de indication vaut y_ de moi
+        x de indication vaut x_ de moi
+        Ajoute indication dans moi
+        // A chaque ajout d'étiquette on ajoute 25 à l'axe des y 
+        // pour que le prochain soit plus bas 
+        y_ de moi += 25
+
+        Retourne indication
